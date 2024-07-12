@@ -1,0 +1,6 @@
+2024-07-12 11:08:20,493 INFO Start polling
+2024-07-12 11:08:20,633 INFO Run polling for bot @Test78272bot id=7365432373 - 'Test'
+2024-07-12 11:08:37,804 INFO Update id=998419128 is not handled. Duration 14 ms by bot id=7365432373
+2024-07-12 11:08:41,771 INFO Update id=998419129 is not handled. Duration 0 ms by bot id=7365432373
+2024-07-12 11:09:36,205 INFO Polling stopped
+2024-07-12 11:09:36,463 INFO Polling stopped for bot @Test78272bot id=7365432373 - 'Test'
