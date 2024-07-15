@@ -1,6 +1,12 @@
-2024-07-12 11:08:20,493 INFO Start polling
-2024-07-12 11:08:20,633 INFO Run polling for bot @Test78272bot id=7365432373 - 'Test'
-2024-07-12 11:08:37,804 INFO Update id=998419128 is not handled. Duration 14 ms by bot id=7365432373
-2024-07-12 11:08:41,771 INFO Update id=998419129 is not handled. Duration 0 ms by bot id=7365432373
-2024-07-12 11:09:36,205 INFO Polling stopped
-2024-07-12 11:09:36,463 INFO Polling stopped for bot @Test78272bot id=7365432373 - 'Test'
+2024-07-14 19:48:34,263 INFO Start polling
+2024-07-14 19:48:34,392 INFO Run polling for bot @Test78272bot id=7365432373 - 'Test'
+2024-07-14 19:49:08,138 INFO Update id=998419175 is not handled. Duration 0 ms by bot id=7365432373
+2024-07-14 19:49:11,653 INFO Update id=998419176 is not handled. Duration 0 ms by bot id=7365432373
+2024-07-14 19:52:01,093 INFO Update id=998419177 is handled. Duration 1093 ms by bot id=7365432373
+2024-07-14 19:52:02,540 INFO Update id=998419178 is handled. Duration 250 ms by bot id=7365432373
+2024-07-14 19:52:04,684 INFO Update id=998419179 is handled. Duration 171 ms by bot id=7365432373
+2024-07-14 19:52:13,327 INFO Update id=998419180 is handled. Duration 156 ms by bot id=7365432373
+2024-07-14 19:52:16,958 INFO Update id=998419181 is handled. Duration 233 ms by bot id=7365432373
+2024-07-14 19:52:51,827 INFO Update id=998419182 is handled. Duration 483 ms by bot id=7365432373
+2024-07-14 19:53:24,425 INFO Polling stopped
+2024-07-14 19:53:24,695 INFO Polling stopped for bot @Test78272bot id=7365432373 - 'Test'
