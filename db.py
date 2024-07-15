@@ -1,3 +1,4 @@
+from typing import List
 from peewee import *
 
 db = SqliteDatabase('database.db')
@@ -17,8 +18,8 @@ class UserModel(BaseModel):
 
 class TaskModel(BaseModel):
     task_text = CharField()
-    task_photo = CharField()
-    task_state = IntegerField()
+    task_photo = CharField(null=True)
+    task_state = IntegerField(default=0)
 
 db.create_tables([DeepLinkModel, UserModel, TaskModel])
 
@@ -39,5 +40,28 @@ def get_deep_link(deep_link_id:int=1):
     else:
         return None
 
+
+def check_user_exists(user_id) -> bool:
+    user_exists = UserModel.select().where(UserModel.user_id == user_id).exists()
+    return user_exists
+
+
 def add_user(user_id: int | str, user_nickname: str, user_username: str):
-    UserModel(user_id=user_id, user_username=user_username, user_nickname=user_nickname)
+    UserModel(user_id=user_id, user_username=user_username, user_nickname=user_nickname).save()
+
+def create_task(task_text: str, task_photo: str):
+    TaskModel(task_text=task_text, task_photo=task_photo).save()
+
+def change_task_state(task_id: int | str, task_state: int):
+    task = TaskModel.get(TaskModel.id==task_id)
+    task.task_state = task_state
+    task.save()
+    
+def get_tasks_list() -> List[List[int, str, str, int]]:
+    tasks = TaskModel.select()
+    data = []
+    
+    for task in tasks:
+        data.append([task.id, task.task_text, task.task_photo, task.task_state])
+    
+    return data

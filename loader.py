@@ -8,7 +8,7 @@ import config as cfg
 bot = Bot(
     token=cfg.BOT_TOKEN,
     default=DefaultBotProperties(
-        parse_mode=ParseMode.HTML
+        parse_mode=ParseMode.MARKDOWN
     )
 )
 dp = Dispatcher(storage=MemoryStorage())
