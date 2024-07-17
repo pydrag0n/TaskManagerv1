@@ -1,0 +1,11 @@
+{
+    "bot": {
+        "bot-token": "7365432373:AAF-DiIVp_S9_rZBjgJa7m2olEfd-kQy_ac"
+    },
+    "path": {
+        "log-file": "bot/log/py-log.log",
+        "database": "database.db",
+        "messages": "messages.json"
+    },
+    "admins": [5826826193]
+}

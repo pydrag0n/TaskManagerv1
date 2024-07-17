@@ -1,8 +1,16 @@
-# [BOT]
-BOT_TOKEN = "7365432373:AAF-DiIVp_S9_rZBjgJa7m2olEfd-kQy_ac"
+import json
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
-# [LOG]
-LOGFILE = "bot/log/py-log.log"
+
+# [BOT]
+BOT_TOKEN:  str     = config["bot"]["bot-token"]
+
+# [PATH]
+LOGFILE:    str     = config["path"]["log-file"]
+DATABASE:   str     = config["path"]["database"]
+MSG_FILE:   str     = config["path"]["messages"]
 
 # ADMIN PANEL
-ADMINS = (5826826193,)
+ADMINS:     list    = config["admins"]
+

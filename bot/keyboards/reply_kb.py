@@ -5,8 +5,9 @@ from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 def admin_Panel() -> ReplyKeyboardMarkup:
     builder = ReplyKeyboardBuilder()
     builder.add(KeyboardButton(text="Создать задачу"))
+    builder.add(KeyboardButton(text="Список задач"))
     builder.add(KeyboardButton(text="Пригласить пользователя"))
-    builder.adjust(1, 2, 1)
+    builder.adjust(2, 1)
     return builder.as_markup(resize_keyboard=True)
 
 # For users
@@ -35,7 +36,7 @@ def cancel_task_photo_btn():
 
 def next_task_state():
     builder = ReplyKeyboardBuilder()
-    builder.add(KeyboardButton(text="Дальше"))
+    builder.add(KeyboardButton(text="Подтвердить"))
     builder.add(KeyboardButton(text="Отмена"))
     builder.adjust(1)
     return builder.as_markup(resize_keyboard=True)

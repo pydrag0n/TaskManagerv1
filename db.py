@@ -1,7 +1,8 @@
 from typing import List
 from peewee import *
+import config
 
-db = SqliteDatabase('database.db')
+db = SqliteDatabase(config.DATABASE)
 
 class BaseModel(Model):
     class Meta:
@@ -14,12 +15,13 @@ class UserModel(BaseModel):
     user_id = IntegerField()
     user_username = CharField(max_length=35)
     user_nickname = CharField(max_length=130)
-    user_task_id = IntegerField(null=True)
 
 class TaskModel(BaseModel):
     task_text = CharField()
     task_photo = CharField(null=True)
     task_state = IntegerField(default=0)
+    user_task_id = IntegerField(null=True)
+
 
 db.create_tables([DeepLinkModel, UserModel, TaskModel])
 
@@ -52,12 +54,12 @@ def add_user(user_id: int | str, user_nickname: str, user_username: str):
 def create_task(task_text: str, task_photo: str):
     TaskModel(task_text=task_text, task_photo=task_photo).save()
 
-def change_task_state(task_id: int | str, task_state: int):
-    task = TaskModel.get(TaskModel.id==task_id)
+def set_task_state(task_id: int | str, task_state: int):
+    task = TaskModel.get_by_id(task_id)
     task.task_state = task_state
     task.save()
     
-def get_tasks_list() -> List[List[int, str, str, int]]:
+def get_tasks_list() -> List[List[str | int]]:
     tasks = TaskModel.select()
     data = []
     
@@ -65,3 +67,31 @@ def get_tasks_list() -> List[List[int, str, str, int]]:
         data.append([task.id, task.task_text, task.task_photo, task.task_state])
     
     return data
+
+def get_task_state(task_id: int):
+    task = TaskModel.get_by_id(task_id)
+    return task.task_state
+
+def get_task_data(task_id: int) -> List[str | str | int]:
+    task = TaskModel.get_by_id(task_id)
+    data = []
+    data.append(task.task_text)
+    data.append(task.task_photo)
+    data.append(task.task_state)
+    return data
+
+def set_user_task_id(task_id, user_id):
+    task = TaskModel.get_by_id(task_id)
+    task.user_task_id = user_id
+    task.save()
+
+def del_user_task_id(task_id):
+    task = TaskModel.get_by_id(task_id)
+    task.user_task_id = None
+    task.save()
+
+def user_task_id_exist(task_id):
+    task = TaskModel.get_by_id(task_id)
+    return task.user_task_id
+
+    
