@@ -181,8 +181,8 @@ async def setstate_task(cb: CallbackQuery):
     elif db.user_task_id_exist(task_id)==int(user_id):
         db.set_task_state(task_id, task_state)
 
-    else:
-        cb.answer(text="Вы не имеете доступа к этой операции", show_alert=True)
+    elif db.user_task_id_exist(task_id)!=int(user_id):
+        await cb.answer(text="Вы не имеете доступа к этой операции", show_alert=True)
         
     
     await cb.bot.send_message(chat_id=cb.message.chat.id, text="Данные обновлены, нажмите на: **Список задач**")

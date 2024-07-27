@@ -8,8 +8,8 @@ import logging
 import loader
 from handlers import handler
 
-logging.basicConfig(level=logging.INFO, 
-                    # filename=loader.cfg.LOGFILE, 
+logging.basicConfig(level=logging.INFO,
+                    # filename=loader.cfg.LOGFILE,
                     # filemode="w",
                     format="%(asctime)s %(levelname)s %(message)s")
 
