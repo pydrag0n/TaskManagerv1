@@ -5,7 +5,7 @@ from aiogram.enums.content_type import ContentType
 from aiogram.enums import ParseMode
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.utils.deep_linking import encode_payload, decode_payload, create_start_link
+from aiogram.utils.deep_linking import encode_payload, decode_payload, create_start_link  
 from .gen_link_key import generate_key
 import time
 from keyboards.inline_kb import admin_upd_key, tasks_list_btn, change_task_state
@@ -123,7 +123,6 @@ async def upd_secret_key(cb: CallbackQuery):
 async def upddeeplink(message: Message, command: CommandObject):
     args = command.args
     payload = decode_payload(args)
-    
     secret_key = db.get_deep_link()
     # print(payload, secret_key)
     user_id = message.from_user.id
@@ -168,22 +167,21 @@ async def setstate_task(cb: CallbackQuery):
     task_id = cb_dt[1]
     task_state = int(cb_dt[2])
     user_id = cb.message.chat.id
+    user_task_id = db.user_task_id_exist(task_id)
     print(task_state)
     # if db.user_task_id_exist(task_id) == user_id:
-    print(db.user_task_id_exist(task_id), user_id)
+    print(user_task_id, user_id)
+    
     if task_state==1:
         db.set_user_task_id(task_id, user_id)
         db.set_task_state(task_id, task_state)
-        
     # elif task_state==0:
     #     db.del_user_task_id(task_id)
 
-    elif db.user_task_id_exist(task_id)==int(user_id):
+    elif user_task_id==int(user_id):
         db.set_task_state(task_id, task_state)
 
-    elif db.user_task_id_exist(task_id)!=int(user_id):
+    elif user_task_id!=int(user_id):
         await cb.answer(text="Вы не имеете доступа к этой операции", show_alert=True)
-        
-    
-    await cb.bot.send_message(chat_id=cb.message.chat.id, text="Данные обновлены, нажмите на: **Список задач**")
 
+    await cb.bot.send_message(chat_id=cb.message.chat.id, text="Данные обновлены, нажмите на: **Список задач**")

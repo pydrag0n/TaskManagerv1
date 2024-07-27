@@ -15,13 +15,13 @@ def tasks_list_btn() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
 
     for d in db.get_tasks_list():
-        state = "*0*" # не занято
+        state = "🔔" # не занято
         if d[3]==1:
-            state = "*1*" # занято
+            state = "🕒" # занято
         elif d[3]==2:
-            state = "*2*" # выполенно
+            state = "✅" # выполенно
         elif d[3]==3:
-            state = "*3*" # не выполненно
+            state = "🚫" # не выполненно
         builder.add(InlineKeyboardButton(text=f"{d[1][:15]} {state}", callback_data=f"task_{d[0]}"))
         builder.adjust(1)
     return builder.as_markup()
@@ -43,12 +43,12 @@ def change_task_state(task_id: int, task_state: int) -> InlineKeyboardMarkup:
     
     builder = InlineKeyboardBuilder()
     if task_state==0:
-        builder.add(InlineKeyboardButton(text="взять", callback_data=f"statechange_{task_id}_1"))
+        builder.add(InlineKeyboardButton(text="принять 🕒", callback_data=f"statechange_{task_id}_1"))
     elif task_state==1:
-        builder.add(InlineKeyboardButton(text="завершить", callback_data=f"statechange_{task_id}_2"))
-        builder.add(InlineKeyboardButton(text="отмена", callback_data=f"statechange_{task_id}_0"))
+        builder.add(InlineKeyboardButton(text="завершить ✅", callback_data=f"statechange_{task_id}_2"))
+        builder.add(InlineKeyboardButton(text="отмена 🚫", callback_data=f"statechange_{task_id}_0"))
     elif task_state==2:
-        builder.add(InlineKeyboardButton(text="отмена", callback_data=f"statechange_{task_id}_0"))
+        builder.add(InlineKeyboardButton(text="отмена 🚫", callback_data=f"statechange_{task_id}_0"))
         
     return builder.as_markup()
     

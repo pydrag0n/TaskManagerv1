@@ -94,4 +94,6 @@ def user_task_id_exist(task_id):
     task = TaskModel.get_by_id(task_id)
     return task.user_task_id
 
-    
+def get_user_name_nik(user_id):
+    user = UserModel.get_by_id(user_id)
+    return f'{user.user_nickname} -> {user.user_nickname}'
